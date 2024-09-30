@@ -25,7 +25,8 @@ useEffect(() => {
                 'title' : book.title,
                 'author' : book.author,
                 'genre' :book.genre,
-                '_id':bookReducer.id
+                '_id':bookReducer.id,
+                'img':book.img
             }
             await dispatch(updateBookDetails(b))
         }else{
@@ -35,12 +36,14 @@ useEffect(() => {
         setBook({title:String,
             author:String,
             genre:String,
-        _id:String})
+        _id:String,
+    img:String})
 
             dispatch(updateBook({title:String,
             author:String,
             genre:String,
-            _id:String}))
+            _id:String,
+        img:String}))
             dispatch(addBookButton())
 
         dispatch(getAllBooks())
@@ -95,6 +98,18 @@ useEffect(() => {
                     color="secondary"
                     type="text"
                      value={bookReducer.books.genre}
+                    fullWidth
+                    sx={{mb: 3}}
+                 />
+                 <TextField 
+                  name="img"
+                  placeholder="img"
+                    label="img"
+                    onChange={onChange}
+                    variant="outlined"
+                    color="secondary"
+                    type="file"
+                     value={bookReducer.books.img}
                     fullWidth
                     sx={{mb: 3}}
                  />

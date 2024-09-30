@@ -21,10 +21,19 @@ export const addBook = createAsyncThunk('book/addBook',async(payload) => {
     const body = {
         'title':payload.title,
         'author':payload.author,
-        'genre':payload.genre
+        'genre':payload.genre,
+        'img':payload.img
     }
-    console.log("xxx xcheck api call")
-const response = await axios.post('http://localhost:3000/api/addBook',body)
+    let formData = new FormData();
+    formData.append('img',payload.img)
+    formData.set('title',payload.title)
+    formData.set('author',payload.author)
+    formData.set('genre',payload.genre)
+    let header: {
+        //  "content-type": "application/json",
+          "content-type": "multipart/form-data"
+       }
+const response = await axios.post('http://localhost:3000/api/addBook',body,{headers:header})
 console.log('xxx res', response.data)
 return response.data
     })

@@ -2,17 +2,17 @@ import { createSlice, PayloadAction, createAction, createAsyncThunk } from "@red
 import axios from "axios";
 
 export interface bookDetailsInitialState {
-    books: { _id: String, title: String, author: String, genre: String }
+    books: { _id: String, title: String, author: String, genre: String, img: String }
     isLoading: boolean
     isEdit: boolean
-    id:String
+    id: String
 }
 
 const initialState: bookDetailsInitialState = {
-    books: { _id: '', title: '', author: '', genre: ''},
+    books: { _id: '', title: '', author: '', genre: '', img: '' },
     isLoading: true,
     isEdit: false,
-    id:''
+    id: ''
 
 }
 
@@ -20,24 +20,24 @@ export const bookObjectSlice = createSlice({
     name: 'updateBook',
     initialState,
     reducers: {
-        updateBook:(state,action) => {
+        updateBook: (state, action) => {
             console.log("xxx action.payload ", action.payload)
             state.books = action.payload,
-            console.log("xxx action.book ",  state.books )
+                console.log("xxx action.book ", state.books)
             //state.isEdit = false
-            
+
         },
-        addBookButton:(state) => {
+        addBookButton: (state) => {
             state.isEdit = false
-            
+
         },
-        setSelectedBookId:(state,action) => {
+        setSelectedBookId: (state, action) => {
             state.id = action.payload
             state.isEdit = true
         }
     },
 
-    })
+})
 
 export default bookObjectSlice.reducer;
-export const {updateBook, addBookButton, setSelectedBookId} = bookObjectSlice.actions
+export const { updateBook, addBookButton, setSelectedBookId } = bookObjectSlice.actions
